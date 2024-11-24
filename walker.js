@@ -1,17 +1,18 @@
 class Walker {
 
-    constructor(color) {
+    constructor(color , array) {
 
         this.color = color;
         this.path = []
-        this.current = PickRandomSpot(grid)
+        this.current = PickRandomSpot(array)
         this.finished = false
+        this.array = array
 
     }
 
     init() {
 
-        grid[this.current[0]][this.current[1]] = this.color
+        this.array[this.current[0]][this.current[1]] = this.color
         this.path.push(this.current)
     }
 
@@ -21,11 +22,11 @@ class Walker {
 
             if (this.current) {
 
-                var next = GetAdjacentSpots(this.current[0], this.current[1], grid)
+                var next = GetAdjacentSpots(this.current[0], this.current[1], this.array)
 
                 if (next) {
 
-                    grid[next[0]][next[1]] = this.color
+                    this.array[next[0]][next[1]] = this.color
                     this.path.push(next)
                     this.current = next
 
@@ -51,7 +52,7 @@ class Walker {
 
     }
 
-    draw() {
+    draw(offsetX , offsetY) {
 
         if (this.path.length > 0) {
 
@@ -64,11 +65,11 @@ class Walker {
 
                 if (i === 0) {
 
-                    c.moveTo(spacing + this.path[i][1] * spacing + spacing / 2, spacing + this.path[i][0] * spacing + spacing / 2)
+                    c.moveTo(offsetX + this.path[i][1] * spacing + spacing / 2, offsetY + this.path[i][0] * spacing + spacing / 2)
 
                 } else {
 
-                    c.lineTo(spacing + this.path[i][1] * spacing + spacing / 2, spacing + this.path[i][0] * spacing + spacing / 2)
+                    c.lineTo(offsetX + this.path[i][1] * spacing + spacing / 2, offsetY + this.path[i][0] * spacing + spacing / 2)
 
 
                 }

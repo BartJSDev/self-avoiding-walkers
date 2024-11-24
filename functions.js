@@ -37,8 +37,8 @@ function Getval(row, col, array) {
 
 function PickRandomSpot(array) {
 
-    var r = Math.floor(Math.random() * rows)
-    var c = Math.floor(Math.random() * cols)
+    var r = Math.floor(Math.random() * array.length)
+    var c = Math.floor(Math.random() * array[0].length)
 
     return [r, c]
 }
