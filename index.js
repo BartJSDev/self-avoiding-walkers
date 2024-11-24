@@ -10,25 +10,24 @@ $("body").css("backgroundColor", "black")
 $("body").css("margin", 0)
 $("body").css("overflow", "hidden")
 
-var spacing = 40
+var spacing = 20
+var counter = 25
+var grid = make2DArray(50,50)
+var walkers = []
 
-var grid = make2DArray(20,20)
-
-
-var walker1 = new Walker("lime" , grid)
-var walker2 = new Walker("orange" , grid)
-var walker3 = new Walker("magenta" , grid)
-var walker4 = new Walker("dodgerblue" , grid)
-var walker5 = new Walker("#FFFFCC" , grid)
-
-walker1.init()
-walker2.init()
-walker3.init()
-walker4.init()
-walker5.init()
+CreateWalkers()
 
 RenderCanvas()
 
+function CreateWalkers(){
+
+    for(var i = 0 ; i < counter ; i++){
+
+        var walker = new Walker("hsl(" + randomInt(0,360) + ", 100%,50%)" , grid)
+        walker.init()
+        walkers.push(walker)
+    }
+}
 
 function DrawGrid(grid , offsetX , offsetY){
 
@@ -58,20 +57,11 @@ function RenderCanvas() {
 
     c.clearRect(0, 0, canvas.width, canvas.height)
 
-    walker1.update()
-    walker1.draw(spacing , spacing)
+    walkers.forEach(walker => {
 
-    walker2.update()
-    walker2.draw(spacing , spacing)
-
-    walker3.update()
-    walker3.draw(spacing , spacing)
-
-    walker4.update()
-    walker4.draw( spacing , spacing)
-
-    walker5.update()
-    walker5.draw( spacing , spacing)
+        walker.update()
+        walker.draw(spacing , spacing)
+    })
 
     DrawGrid(grid , spacing , spacing)
    
