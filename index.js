@@ -10,9 +10,9 @@ $("body").css("backgroundColor", "black")
 $("body").css("margin", 0)
 $("body").css("overflow", "hidden")
 
-var spacing = 20
+var spacing = 30
 var counter = 25
-var grid = make2DArray(50,50)
+var grid = make2DArray(40,40)
 var walkers = []
 
 CreateWalkers()
