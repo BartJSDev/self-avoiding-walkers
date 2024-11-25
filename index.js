@@ -11,8 +11,8 @@ $("body").css("margin", 0)
 $("body").css("overflow", "hidden")
 
 var spacing = 30
-var counter = 25
-var grid = make2DArray(40,40)
+var counter = 5
+var grid = make2DArray(30,30)
 var walkers = []
 
 CreateWalkers()
